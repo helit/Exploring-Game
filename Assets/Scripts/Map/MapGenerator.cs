@@ -158,13 +158,13 @@ public class MapGenerator : MonoBehaviour
   {
     sea.transform.position = new Vector3(
       (levelSettings.mapWidth * levelSettings.mapScale) / 2,
-      0,
+      sea.transform.position.y,
       (levelSettings.mapHeight * levelSettings.mapScale) / 2
     );
 
     sea.transform.localScale = new Vector3(
       levelSettings.mapWidth,
-      0,
+      sea.transform.position.y,
       levelSettings.mapHeight
     );
   }

@@ -401,8 +401,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175562439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 658143627}
   m_RootOrder: 0
@@ -440,7 +440,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 54848783e443e6a4c82f0b6c2307c91a, type: 2}
+  - {fileID: 2100000, guid: a0807d701d0281e45a429f103a83e51b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62be13b697a68d46b7617d00eec7618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: 2
+  startPosition: 1
   cameraBounds: 0
   panSpeed: 50
   panBorderThickness: 10
