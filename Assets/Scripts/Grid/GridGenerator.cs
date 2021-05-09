@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GridGenerator
 {
-  public static GridData GenerateGrid(int mapWidth, int mapHeight, float scale, float[,] noiseMap, float heightMultiplier, bool isDebug = false)
+  public static GridData GenerateGrid(int mapWidth, int mapHeight, float scale, bool isDebug = false, float[,] noiseMap = null, float heightMultiplier = 0)
   {
     GridData gridData = new GridData(mapWidth, mapHeight);
 
@@ -17,42 +17,19 @@ public static class GridGenerator
     {
       for (int x = 0; x < gridWidth; x++)
       {
-        Vector3 cellPosition = new Vector3(x * scale, noiseMap[x, y] * heightMultiplier, y * scale);
+        float height = 0;
+        // Apply height if noise map is set
+        if (noiseMap != null)
+        {
+          height = noiseMap[x, y] * heightMultiplier;
+        }
+        Vector3 cellPosition = new Vector3(x * scale, height, y * scale);
         GridCell gridCell = new GridCell(x, y, cellPosition, "[" + x + "," + y + "]", scale);
         gridData.AddCell(x, y, gridCell);
 
         if (isDebug)
         {
           DrawGridLines(x, y, scale, noiseMap, heightMultiplier);
-        }
-
-        cellIndex++;
-      }
-    }
-
-    return gridData;
-  }
-
-  static public GridData GenerateFlatGrid(int mapWidth, int mapHeight, float scale, bool isDebug = false)
-  {
-    GridData gridData = new GridData(mapWidth, mapHeight);
-
-    // Remove one from width and height to only include cells
-    int gridWidth = mapWidth - 1;
-    int gridHeight = mapHeight - 1;
-
-    int cellIndex = 0;
-    for (int y = 0; y < gridHeight; y++)
-    {
-      for (int x = 0; x < gridWidth; x++)
-      {
-        Vector3 cellPosition = new Vector3(x * scale, 0, y * scale);
-        GridCell gridCell = new GridCell(x, y, cellPosition, "[" + x + "," + y + "]", scale);
-        gridData.AddCell(x, y, gridCell);
-
-        if (isDebug)
-        {
-          DrawFlatGridLines(x, y, scale);
         }
 
         cellIndex++;
@@ -75,41 +52,35 @@ public static class GridGenerator
     );
   }
 
-  static void DrawGridLines(int x, int y, float scale, float[,] noiseMap, float heightMultiplier)
+  static void DrawGridLines(int x, int y, float scale, float[,] noiseMap = null, float heightMultiplier = 0)
   {
+    float currentHeight = 0;
+    float nextHeightX = 0;
+    float nextHeightY = 0;
+
+    // Apply height if noise map is set
+    if (noiseMap != null)
+    {
+      currentHeight = noiseMap[x, y] * heightMultiplier;
+      nextHeightX = noiseMap[x + 1, y] * heightMultiplier;
+      nextHeightY = noiseMap[x, y + 1] * heightMultiplier;
+    }
+
     Debug.DrawLine(
-      new Vector3(x * scale, noiseMap[x, y] * heightMultiplier, y * scale),
-      new Vector3((x + 1) * scale, noiseMap[x + 1, y] * heightMultiplier, y * scale),
+      new Vector3(x * scale, currentHeight, y * scale),
+      new Vector3((x + 1) * scale, nextHeightX, y * scale),
       Color.green,
       100f
     );
 
     Debug.DrawLine(
-      new Vector3(x * scale, noiseMap[x, y] * heightMultiplier, y * scale),
-      new Vector3(x * scale, noiseMap[x, y + 1] * heightMultiplier, (y + 1) * scale),
-      Color.green,
-      100f
-    );
-  }
-
-  static void DrawFlatGridLines(int x, int y, float scale)
-  {
-    Debug.DrawLine(
-      new Vector3(x * scale, 0, y * scale),
-      new Vector3((x + 1) * scale, 0, y * scale),
-      Color.green,
-      100f
-    );
-
-    Debug.DrawLine(
-      new Vector3(x * scale, 0, y * scale),
-      new Vector3(x * scale, 0, (y + 1) * scale),
+      new Vector3(x * scale, currentHeight, y * scale),
+      new Vector3(x * scale, nextHeightY, (y + 1) * scale),
       Color.green,
       100f
     );
   }
 }
-
 
 public class GridData
 {

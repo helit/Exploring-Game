@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ffc1931bc567f4b8884244241b4d3a, type: 3}
+  m_Name: Level Settings
+  m_EditorClassIdentifier: 
+  drawMode: 3
+  mapWidth: 100
+  mapHeight: 100
+  heightMultiplier: 150
+  mapScale: 10
+  seed: 1
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5812569
+      value: 0.31647986
+      inSlope: 1.1113088
+      outSlope: 1.1113088
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  terrainGradient:
+    serializedVersion: 2
+    key0: {r: 0.68235296, g: 0.7176471, b: 0.50980395, a: 1}
+    key1: {r: 0.23137255, g: 0.5372549, b: 0.25490198, a: 1}
+    key2: {r: 0.23137255, g: 0.5372549, b: 0.25490198, a: 0}
+    key3: {r: 0.09803922, g: 0.4509804, b: 0.1254902, a: 0}
+    key4: {r: 0.09803922, g: 0.4509804, b: 0.1254902, a: 0}
+    key5: {r: 0.4528302, g: 0.4528302, b: 0.44599503, a: 0}
+    key6: {r: 0.5294118, g: 0.5254902, b: 0.5254902, a: 0}
+    key7: {r: 0.69411767, g: 0.8666667, b: 0.90588236, a: 0}
+    ctime0: 9830
+    ctime1: 15420
+    ctime2: 26214
+    ctime3: 30840
+    ctime4: 44525
+    ctime5: 52428
+    ctime6: 59945
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  terrainTypes:
+  - name: Sea Bed
+    height: 0.2
+    color: {r: 0.68235296, g: 0.7176471, b: 0.50980395, a: 1}
+  - name: Beach
+    height: 0.3
+    color: {r: 0.68235296, g: 0.7176471, b: 0.50980395, a: 1}
+  - name: Grass
+    height: 0.4
+    color: {r: 0.23137255, g: 0.5372549, b: 0.25490198, a: 1}
+  - name: Tall Grass
+    height: 0.5
+    color: {r: 0.09803922, g: 0.4509804, b: 0.1254902, a: 1}
+  - name: Mountain
+    height: 0.8
+    color: {r: 0.4509804, g: 0.4509804, b: 0.44705883, a: 1}
+  - name: Mountain Peak
+    height: 1
+    color: {r: 0.69411767, g: 0.8666667, b: 0.90588236, a: 1}
+  isIsland: 0
+  noiseScale: 40
+  octaves: 4
+  persistance: 0.5
+  lacunarity: 2
+  offset: {x: 0, y: 0}
+  isDebug: 0
+  needsUpdate: 1

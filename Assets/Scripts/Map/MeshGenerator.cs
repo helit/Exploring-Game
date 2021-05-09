@@ -51,7 +51,6 @@ public static class MeshGenerator
   }
 }
 
-
 public class MeshData
 {
   public Vector3[] vertices;

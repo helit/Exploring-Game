@@ -373,8 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178aa0bc316b1ea49aa1c439d753b71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  map: {fileID: 658143625}
+  levelSettings: {fileID: 11400000, guid: 649f43d3856b45a46903d1b5ab36bec5, type: 2}
 --- !u!1 &175562439
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &175562440
 Transform:
   m_ObjectHideFlags: 0
@@ -403,7 +402,7 @@ Transform:
   m_GameObject: {fileID: 175562439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 658143627}
   m_RootOrder: 0
@@ -549,108 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febe0e722140a7849876c5ba2f681a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawMode: 3
-  mapWidth: 20
-  mapHeight: 20
-  heightMultiplier: 150
-  heightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.4221456
-      outSlope: 0.4221456
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.64480007
-      value: 0.2721995
-      inSlope: 0.8349821
-      outSlope: 0.8349821
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.11833959
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2.0489883
-      outSlope: 2.0489883
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  terrainGradient:
-    serializedVersion: 2
-    key0: {r: 0.68235296, g: 0.7176471, b: 0.50980395, a: 1}
-    key1: {r: 0.23137255, g: 0.5372549, b: 0.25490198, a: 1}
-    key2: {r: 0.23137255, g: 0.5372549, b: 0.25490198, a: 0}
-    key3: {r: 0.09803922, g: 0.4509804, b: 0.1254902, a: 0}
-    key4: {r: 0.09803922, g: 0.4509804, b: 0.1254902, a: 0}
-    key5: {r: 0.4528302, g: 0.4528302, b: 0.44599503, a: 0}
-    key6: {r: 0.5294118, g: 0.5254902, b: 0.5254902, a: 0}
-    key7: {r: 0.69411767, g: 0.8666667, b: 0.90588236, a: 0}
-    ctime0: 9830
-    ctime1: 15420
-    ctime2: 26214
-    ctime3: 30840
-    ctime4: 44525
-    ctime5: 48380
-    ctime6: 53199
-    ctime7: 56283
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 8
-    m_NumAlphaKeys: 2
-  terrainTypes:
-  - name: Seabed
-    height: 0.05
-    color: {r: 0.6131949, g: 0.6132076, b: 0.4824671, a: 1}
-    texture: {fileID: 2800000, guid: 3720b49a05c22834793c8ff73b9b1746, type: 3}
-  - name: Beach
-    height: 0.15
-    color: {r: 0.68235296, g: 0.7176471, b: 0.50980395, a: 1}
-    texture: {fileID: 2800000, guid: 3720b49a05c22834793c8ff73b9b1746, type: 3}
-  - name: Land Low
-    height: 0.4
-    color: {r: 0.23031326, g: 0.5377358, b: 0.25320643, a: 1}
-    texture: {fileID: 2800000, guid: d806e73234ff8b04e8de95c23e422fab, type: 3}
-  - name: Land High
-    height: 0.6
-    color: {r: 0.09996439, g: 0.4528302, b: 0.12624164, a: 1}
-    texture: {fileID: 2800000, guid: 19dcbc063b259864aa4247d1e1d02141, type: 3}
-  - name: Mountain
-    height: 0.8
-    color: {r: 0.5283019, g: 0.5253115, b: 0.5253115, a: 1}
-    texture: {fileID: 2800000, guid: 00d507829f8385b4eb8c96c51f5854ae, type: 3}
-  - name: Mountain Peak
-    height: 1
-    color: {r: 0.69547886, g: 0.86501217, b: 0.9056604, a: 1}
-    texture: {fileID: 2800000, guid: e43728f2dbafba642bd28aaae94a1dec, type: 3}
-  isIsland: 0
-  noiseScale: 60
-  octaves: 4
-  persistance: 0.5
-  lacunarity: 2
-  seed: 1186
-  offset: {x: 0, y: 0}
-  falloffA: 1.8
-  falloffB: 3.5
-  mapTilesGroup: {fileID: 0}
-  mapTilePrefab: {fileID: 1645456546835519493, guid: e3712dba7a55e5344aea2c0d4aee6cbd, type: 3}
+  levelSettings: {fileID: 11400000, guid: 649f43d3856b45a46903d1b5ab36bec5, type: 2}
   sea: {fileID: 175562439}
   display: {fileID: 0}
 --- !u!4 &658143627
@@ -952,6 +850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62be13b697a68d46b7617d00eec7618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPosition: 1
+  cameraBounds: 0
   panSpeed: 50
   panBorderThickness: 10
   panLimit: {x: 1000, y: 1000}
@@ -961,6 +861,7 @@ MonoBehaviour:
   scrollSpeed: 20
   minY: 1
   maxY: 120
+  levelSettings: {fileID: 11400000, guid: 649f43d3856b45a46903d1b5ab36bec5, type: 2}
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0
@@ -1012,7 +913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 500, y: 60, z: 450}
+  m_LocalPosition: {x: 0, y: 120, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

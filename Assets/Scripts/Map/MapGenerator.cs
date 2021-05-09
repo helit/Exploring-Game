@@ -7,9 +7,13 @@ public class MapGenerator : MonoBehaviour
   [Header("Script References")]
   public LevelSettings levelSettings;
 
+  [Header("Object References")]
+  public GameObject sea;
+
   [HideInInspector]
   public MapDisplay display;
   MeshData meshData;
+  GridData gridData;
 
   void Start()
   {
@@ -20,6 +24,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     GenerateMap();
+    PositionSea();
   }
 
   void Update()
@@ -32,6 +37,8 @@ public class MapGenerator : MonoBehaviour
       }
 
       GenerateMap();
+      PositionSea();
+      levelSettings.needsUpdate = false;
     }
   }
 
@@ -69,6 +76,14 @@ public class MapGenerator : MonoBehaviour
     {
       // display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
       meshData = MeshGenerator.GenerateTerrainMesh(levelSettings.noiseMap);
+
+      gridData = GridGenerator.GenerateGrid(
+        levelSettings.mapWidth,
+        levelSettings.mapHeight,
+        levelSettings.mapScale,
+        levelSettings.isDebug
+      );
+
       display.DrawMesh(
         meshData,
         TextureGenerator.TextureFromHeightMap(levelSettings.noiseMap)
@@ -78,6 +93,14 @@ public class MapGenerator : MonoBehaviour
     {
       // display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
       meshData = MeshGenerator.GenerateTerrainMesh(levelSettings.noiseMap);
+
+      gridData = GridGenerator.GenerateGrid(
+        levelSettings.mapWidth,
+        levelSettings.mapHeight,
+        levelSettings.mapScale,
+        levelSettings.isDebug
+      );
+
       display.DrawMesh(
         meshData,
         TextureGenerator.TextureFromColorMap(
@@ -90,6 +113,14 @@ public class MapGenerator : MonoBehaviour
     else if (levelSettings.drawMode == LevelSettings.DrawMode.NoTexture)
     {
       meshData = MeshGenerator.GenerateTerrainMesh(levelSettings.noiseMap);
+
+      gridData = GridGenerator.GenerateGrid(
+        levelSettings.mapWidth,
+        levelSettings.mapHeight,
+        levelSettings.mapScale,
+        levelSettings.isDebug
+      );
+
       display.DrawMeshNoTexture(
         meshData
       );
@@ -97,6 +128,15 @@ public class MapGenerator : MonoBehaviour
     else if (levelSettings.drawMode == LevelSettings.DrawMode.Terrain)
     {
       meshData = MeshGenerator.GenerateTerrainMesh(
+        levelSettings.noiseMap,
+        levelSettings.heightMultiplier
+      );
+
+      gridData = GridGenerator.GenerateGrid(
+        levelSettings.mapWidth,
+        levelSettings.mapHeight,
+        levelSettings.mapScale,
+        levelSettings.isDebug,
         levelSettings.noiseMap,
         levelSettings.heightMultiplier
       );
@@ -110,5 +150,20 @@ public class MapGenerator : MonoBehaviour
         )
       );
     }
+  }
+
+  void PositionSea()
+  {
+    sea.transform.position = new Vector3(
+      (levelSettings.mapWidth * levelSettings.mapScale) / 2,
+      0,
+      (levelSettings.mapHeight * levelSettings.mapScale) / 2
+    );
+
+    sea.transform.localScale = new Vector3(
+      levelSettings.mapWidth,
+      0,
+      levelSettings.mapHeight
+    );
   }
 }

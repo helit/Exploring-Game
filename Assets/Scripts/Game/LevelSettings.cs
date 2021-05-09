@@ -34,6 +34,9 @@ public class LevelSettings : ScriptableObject
   // public float falloffB = 3.5f;
   // public float[,] falloffMap;
 
+  [Header("Debug Settings")]
+  public bool isDebug;
+
   [HideInInspector]
   public bool needsUpdate;
   [HideInInspector]

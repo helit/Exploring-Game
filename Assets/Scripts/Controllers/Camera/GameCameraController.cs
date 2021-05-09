@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class GameCameraController : MonoBehaviour
 {
+  public enum StartPosition { SpawnPoint, Center, Zero };
+  public StartPosition startPosition;
+  public enum CameraBounds { None, Map, Custom };
+  public CameraBounds cameraBounds;
+
   public float panSpeed = 50f;
   public float panBorderThickness = 10f;
   public Vector2 panLimit = new Vector2(400, 400);
@@ -14,6 +19,32 @@ public class GameCameraController : MonoBehaviour
   public float scrollSpeed = 20f;
   public float minY = 20f;
   public float maxY = 120f;
+
+  public LevelSettings levelSettings;
+
+  void Start()
+  {
+    if (startPosition == StartPosition.SpawnPoint)
+    {
+      // TODO: Add when logic for spawnpoint is available
+    }
+    else if (startPosition == StartPosition.Center)
+    {
+      transform.position = new Vector3(
+        (levelSettings.mapWidth * levelSettings.mapScale) / 2,
+        transform.position.y,
+        (levelSettings.mapHeight * levelSettings.mapScale) / 2
+      );
+    }
+    else if (startPosition == StartPosition.Zero)
+    {
+      transform.position = new Vector3(
+        0,
+        transform.position.y,
+        0
+      );
+    }
+  }
 
   void Update()
   {
@@ -56,9 +87,18 @@ public class GameCameraController : MonoBehaviour
       pos.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
     }
 
-    pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
-    pos.y = Mathf.Clamp(pos.y, minY, maxY);
-    pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
+    if (cameraBounds == CameraBounds.Map)
+    {
+      pos.x = Mathf.Clamp(pos.x, 0, (float)levelSettings.mapWidth * levelSettings.mapScale);
+      pos.y = Mathf.Clamp(pos.y, minY, maxY);
+      pos.z = Mathf.Clamp(pos.z, 0, (float)levelSettings.mapHeight * levelSettings.mapScale);
+    }
+    else if (cameraBounds == CameraBounds.Custom)
+    {
+      pos.x = Mathf.Clamp(pos.x, 0, panLimit.x);
+      pos.y = Mathf.Clamp(pos.y, minY, maxY);
+      pos.z = Mathf.Clamp(pos.z, 0, panLimit.y);
+    }
 
     transform.position = pos;
   }
