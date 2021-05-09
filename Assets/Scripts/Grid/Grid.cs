@@ -20,6 +20,11 @@ public class Grid : MonoBehaviour
 
   void Update()
   {
+    if (levelSettings.needsUpdate)
+    {
+      gridData = GenerateGrid(showGrid);
+    }
+
     // Left Click
     if (Input.GetMouseButtonDown(0))
     {
@@ -30,11 +35,6 @@ public class Grid : MonoBehaviour
 
       Debug.Log("x: " + mousePosX + " y: " + mousePosY);
     }
-  }
-
-  void OnValidate()
-  {
-    gridData = GenerateGrid(showGrid);
   }
 
   GridData GenerateGrid(bool showGrid)

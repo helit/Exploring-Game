@@ -39,18 +39,12 @@ public class LevelSettings : ScriptableObject
   [HideInInspector]
   public float[,] noiseMap;
 
-  void Awake()
+  void Update()
   {
-    noiseMap = NoiseMapGenerator.GenerateNoiseMap(
-      mapWidth,
-      mapHeight,
-      seed,
-      noiseScale,
-      octaves,
-      persistance,
-      lacunarity,
-      offset
-    );
+    if (needsUpdate)
+    {
+      needsUpdate = false;
+    }
   }
 
   void OnValidate()

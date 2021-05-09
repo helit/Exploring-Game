@@ -37,6 +37,17 @@ public class MapGenerator : MonoBehaviour
 
   void GenerateMap()
   {
+    levelSettings.noiseMap = NoiseMapGenerator.GenerateNoiseMap(
+      levelSettings.mapWidth,
+      levelSettings.mapHeight,
+      levelSettings.seed,
+      levelSettings.noiseScale,
+      levelSettings.octaves,
+      levelSettings.persistance,
+      levelSettings.lacunarity,
+      levelSettings.offset
+    );
+
     Color[] colorMap = new Color[levelSettings.mapWidth * levelSettings.mapHeight];
     for (int y = 0; y < levelSettings.mapHeight; y++)
     {
