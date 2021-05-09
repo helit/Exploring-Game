@@ -129,7 +129,8 @@ public class MapGenerator : MonoBehaviour
     {
       meshData = MeshGenerator.GenerateTerrainMesh(
         levelSettings.noiseMap,
-        levelSettings.heightMultiplier
+        levelSettings.heightMultiplier,
+        levelSettings.heightCurve
       );
 
       gridData = GridGenerator.GenerateGrid(
@@ -138,7 +139,8 @@ public class MapGenerator : MonoBehaviour
         levelSettings.mapScale,
         levelSettings.isDebug,
         levelSettings.noiseMap,
-        levelSettings.heightMultiplier
+        levelSettings.heightMultiplier,
+        levelSettings.heightCurve
       );
 
       display.DrawMesh(

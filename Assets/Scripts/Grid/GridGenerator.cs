@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GridGenerator
 {
-  public static GridData GenerateGrid(int mapWidth, int mapHeight, float scale, bool isDebug = false, float[,] noiseMap = null, float heightMultiplier = 0)
+  public static GridData GenerateGrid(int mapWidth, int mapHeight, float scale, bool isDebug = false, float[,] noiseMap = null, float heightMultiplier = 0, AnimationCurve heightCurve = null)
   {
     GridData gridData = new GridData(mapWidth, mapHeight);
 
@@ -22,6 +22,12 @@ public static class GridGenerator
         if (noiseMap != null)
         {
           height = noiseMap[x, y] * heightMultiplier;
+
+          // Apply height curve if it's set
+          if (heightCurve != null)
+          {
+            height = heightCurve.Evaluate(noiseMap[x, y]) * heightMultiplier;
+          }
         }
         Vector3 cellPosition = new Vector3(x * scale, height, y * scale);
         GridCell gridCell = new GridCell(x, y, cellPosition, "[" + x + "," + y + "]", scale);
@@ -29,7 +35,7 @@ public static class GridGenerator
 
         if (isDebug)
         {
-          DrawGridLines(x, y, scale, noiseMap, heightMultiplier);
+          DrawGridLines(x, y, scale, noiseMap, heightMultiplier, heightCurve);
         }
 
         cellIndex++;
@@ -52,7 +58,7 @@ public static class GridGenerator
     );
   }
 
-  static void DrawGridLines(int x, int y, float scale, float[,] noiseMap = null, float heightMultiplier = 0)
+  static void DrawGridLines(int x, int y, float scale, float[,] noiseMap = null, float heightMultiplier = 0, AnimationCurve heightCurve = null)
   {
     float currentHeight = 0;
     float nextHeightX = 0;
@@ -64,6 +70,14 @@ public static class GridGenerator
       currentHeight = noiseMap[x, y] * heightMultiplier;
       nextHeightX = noiseMap[x + 1, y] * heightMultiplier;
       nextHeightY = noiseMap[x, y + 1] * heightMultiplier;
+
+      // Apply height curve if it's set
+      if (heightCurve != null)
+      {
+        currentHeight = heightCurve.Evaluate(noiseMap[x, y]) * heightMultiplier;
+        nextHeightX = heightCurve.Evaluate(noiseMap[x + 1, y]) * heightMultiplier;
+        nextHeightY = heightCurve.Evaluate(noiseMap[x, y + 1]) * heightMultiplier;
+      }
     }
 
     Debug.DrawLine(
