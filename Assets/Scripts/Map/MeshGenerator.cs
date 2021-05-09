@@ -21,7 +21,7 @@ public static class MeshGenerator
         // Apply height curve if it's set
         if (heightCurve != null)
         {
-          mapHeight = heightCurve.Evaluate(noiseMap[x, y]) * heightMultiplier;
+          mapHeight = heightCurve.Evaluate(noiseMap[x, y]) * height;
         }
 
         meshData.vertices[vertexIndex] = new Vector3(x, mapHeight, y);
@@ -49,9 +49,7 @@ public static class MeshGenerator
     {
       for (int x = 0; x < height; x++)
       {
-        // int falloffX = x - (int)tilePosition.x;
-        // int falloffY = y - (int)tilePosition.y;
-        // noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - falloffMap[falloffX, falloffY]);
+        noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - falloffMap[x, y]);
       }
     }
 

@@ -17,7 +17,7 @@ MonoBehaviour:
   mapHeight: 100
   heightMultiplier: 150
   mapScale: 10
-  seed: 35
+  seed: 432
   heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -31,23 +31,23 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.190598
-      value: 0.086071305
-      inSlope: 1.0535517
-      outSlope: 1.0535517
+      time: 0.20264933
+      value: 0.17881407
+      inSlope: 0.7807134
+      outSlope: 0.7807134
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.3210472
-      outWeight: 0.33333334
+      inWeight: 0.35446298
+      outWeight: 0.16497855
     - serializedVersion: 3
-      time: 0.6008021
-      value: 0.23536299
-      inSlope: 0.089746825
-      outSlope: 0.089746825
+      time: 0.6083323
+      value: 0.46333826
+      inSlope: 0.64751136
+      outSlope: 0.64751136
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.16629861
+      outWeight: 0.19636212
     - serializedVersion: 3
       time: 1
       value: 1
@@ -108,11 +108,13 @@ MonoBehaviour:
   - name: Mountain Peak
     height: 1
     color: {r: 0.69411767, g: 0.8666667, b: 0.90588236, a: 1}
-  isIsland: 0
+  isIsland: 1
   noiseScale: 40
   octaves: 4
   persistance: 0.5
   lacunarity: 2
-  offset: {x: 0, y: 0}
+  offset: {x: 1.74, y: 0}
+  falloffA: 1.3
+  falloffB: 3
   isDebug: 0
   needsUpdate: 0

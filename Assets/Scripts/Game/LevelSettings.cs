@@ -11,6 +11,7 @@ public class LevelSettings : ScriptableObject
   public DrawMode drawMode;
 
   [Header("Map Settings")]
+  public bool isIsland;
   public int mapWidth = 10;
   public int mapHeight = 10;
   public float heightMultiplier = 10;
@@ -19,7 +20,6 @@ public class LevelSettings : ScriptableObject
   public AnimationCurve heightCurve;
   public Gradient terrainGradient;
   public TerrainType[] terrainTypes;
-  public bool isIsland;
 
   [Header("Noise Texture Settings")]
   public float noiseScale = 15f;
@@ -29,10 +29,10 @@ public class LevelSettings : ScriptableObject
   public float lacunarity = 2;
   public Vector2 offset;
 
-  // [Header("Falloff Texture Settings")]
-  // public float falloffA = 1.8f;
-  // public float falloffB = 3.5f;
-  // public float[,] falloffMap;
+  [Header("Falloff Texture Settings")]
+  public float falloffA = 1.8f;
+  public float falloffB = 3.5f;
+  public float[,] falloffMap;
 
   [Header("Debug Settings")]
   public bool isDebug;

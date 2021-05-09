@@ -20,7 +20,12 @@ public class MapGenerator : MonoBehaviour
     display = FindObjectOfType<MapDisplay>();
     if (levelSettings.isIsland)
     {
-      // falloffMap = GetFalloffMap();
+      levelSettings.falloffMap = FalloffGenerator.GenerateFalloffMap(
+        levelSettings.mapWidth,
+        levelSettings.mapHeight,
+        levelSettings.falloffA,
+        levelSettings.falloffB
+      );
     }
 
     GenerateMap();
@@ -33,7 +38,12 @@ public class MapGenerator : MonoBehaviour
     {
       if (levelSettings.isIsland)
       {
-        // falloffMap = GetFalloffMap();
+        levelSettings.falloffMap = FalloffGenerator.GenerateFalloffMap(
+          levelSettings.mapWidth,
+          levelSettings.mapHeight,
+          levelSettings.falloffA,
+          levelSettings.falloffB
+        );
       }
 
       GenerateMap();
@@ -54,6 +64,14 @@ public class MapGenerator : MonoBehaviour
       levelSettings.lacunarity,
       levelSettings.offset
     );
+
+    if (levelSettings.isIsland)
+    {
+      levelSettings.noiseMap = MeshGenerator.ApplyFalloffMap(
+        levelSettings.falloffMap,
+        levelSettings.noiseMap
+      );
+    }
 
     Color[] colorMap = new Color[levelSettings.mapWidth * levelSettings.mapHeight];
     for (int y = 0; y < levelSettings.mapHeight; y++)
